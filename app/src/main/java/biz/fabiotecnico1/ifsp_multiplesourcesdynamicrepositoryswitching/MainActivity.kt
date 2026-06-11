@@ -17,6 +17,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        startKoin {
+            androidContext(this@MainActivity)
+            modules(appModule)
+        }
         setContent {
             IfspMultipleSourcesDynamicRepositorySwitchingTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
