@@ -1,9 +1,9 @@
 package biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.data.firebase
 
-import com.google.firebase.firestore.FirebaseFirestore
 import biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.domain.model.Transaction
 import kotlinx.coroutines.tasks.await
 import java.util.Date
+import com.google.firebase.firestore.FirebaseFirestore
 
 class TransactionFirestoreDataSource {
     private val db = FirebaseFirestore.getInstance()

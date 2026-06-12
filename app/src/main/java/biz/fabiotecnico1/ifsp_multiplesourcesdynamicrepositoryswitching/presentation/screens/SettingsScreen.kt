@@ -1,18 +1,33 @@
 package biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.presentation.screens
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.datasource.DataStoreManager
 import biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.presentation.viewmodel.SettingsViewModel
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    viewModel: SettingsViewModel = getViewModel()
+    viewModel: SettingsViewModel = koinViewModel()
 ) {
     val currentSource by viewModel.currentSource.collectAsState()
 
@@ -52,7 +67,7 @@ fun SettingsScreen(
                 onClick = { viewModel.switchSource(DataStoreManager.SOURCE_ROOM) },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (currentSource == DataStoreManager.SSOURCE_ROOM)
+                    containerColor = if (currentSource == DataStoreManager.SOURCE_ROOM)
                         MaterialTheme.colorScheme.primary
                     else MaterialTheme.colorScheme.secondary
                 )

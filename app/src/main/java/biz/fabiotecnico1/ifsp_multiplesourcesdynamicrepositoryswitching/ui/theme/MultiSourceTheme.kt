@@ -55,3 +55,5 @@ fun IfspMultipleSourcesDynamicRepositorySwitchingTheme(
         content = content
     )
 }
+
+annotation class MultiSourceTheme
