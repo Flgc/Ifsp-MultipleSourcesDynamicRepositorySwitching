@@ -11,34 +11,30 @@ import biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.datasour
 import biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.domain.repository.TransactionRepository
 import biz.fabiotecnico1.ifsp_multiplesourcesdynamicrepositoryswitching.repositoryprovider.RepositoryProvider
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val appModule = module {
-    single { AppDatabase.getInstance(androidContext()) }
+    single { AppDatabase.getInstance(context = androidContext()) }
     single { get<AppDatabase>().transactionDao() }
-
     single { RetrofitClient.apiService }
-    single { TransactionRemoteDataSource(get()) }
-
+    single { TransactionRemoteDataSource(apiService = get()) }
     single { TransactionFirestoreDataSource() }
-
     single<TransactionRepository>(named("room")) {
-        TransactionRepositoryRoomImpl(get())
+        TransactionRepositoryRoomImpl(database = get())
     }
     single<TransactionRepository>(named("remote")) {
-        TransactionRepositoryRemoteImpl(get())
+        TransactionRepositoryRemoteImpl(remoteDataSource = get())
     }
     single<TransactionRepository>(named("firebase")) {
-        TransactionRepositoryFirebaseImpl(get())
+        TransactionRepositoryFirebaseImpl(firestoreDataSource = get())
     }
-
-    single {
+    single<RepositoryProvider> {
         RepositoryProvider(
             roomRepo = get(named("room")),
             remoteRepo = get(named("remote")),
             firebaseRepo = get(named("firebase"))
         )
     }
-
-    single { DataStoreManager(androidContext()) }
+    single { DataStoreManager(context = androidContext()) }
 }
