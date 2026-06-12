@@ -55,8 +55,12 @@ Um `RepositoryProvider` centraliza os três repositórios e expõe um `StateFlow
    cd Ifsp-MultipleSourcesDynamicRepositorySwitching
 ```
 
-2. **Crie um arquivo db.json com o conteúdo:**:
+2. **Configure a API REST mock usando JSON Server**:
    ```bash
+   npm install -g json-server
+
+   Crie um arquivo db.json com o conteúdo:
+
    {
    "transactions": [
     {
@@ -73,8 +77,10 @@ Um `RepositoryProvider` centraliza os três repositórios e expõe um `StateFlow
     }
    ]
    }
-   ```
 
+Execute: json-server --watch db.json --port 3000
+
+   ```
 ---
 
 # 📁 Estrutura do Projeto
