@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://run.mocky.io/v3/" // Será substituído posteriormente pela URL correta
+    private const val BASE_URL = "http://localhost:3000/" // Servidor local json-server npm
 
     val apiService: ApiService by lazy {
         Retrofit.Builder()

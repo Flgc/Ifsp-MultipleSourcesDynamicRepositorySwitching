@@ -1,0 +1,16 @@
+{
+  "transactions": [
+    {
+      "id": "1",
+      "description": "Salário",
+      "amount": 3500,
+      "timestamp": 1704067200000
+    },
+    {
+      "id": "2",
+      "description": "Aluguel",
+      "amount": -1200,
+      "timestamp": 1704153600000
+    }
+  ]
+}
